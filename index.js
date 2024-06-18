@@ -1,6 +1,11 @@
 // TASK: import helper functions from utils
 // TASK: import initialData
 import { getTasks } from "./utils/taskFunctions";
+import { createNewTask } from "./utils/taskFunctions";
+import { patchTask } from "./utils/taskFunctions";
+import { putTask } from "./utils/taskFunctions";
+import { deleteTask } from "./utils/taskFunctions";
+
 import { initialData } from "./initialData";
 
 /*************************************************************************************************************************************************
@@ -238,7 +243,7 @@ function saveTaskChanges(taskId) {
   // Create an object with the updated task details
 
 
-  // Update task using a hlper functoin
+  // Update task using a helper function
  
 
   // Close the modal and refresh the UI to reflect the changes
