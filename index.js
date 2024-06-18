@@ -24,7 +24,38 @@ function initializeData() {
 
 // TASK: Get elements from the DOM
 const elements = {
+  // Side-bar section
+sideBarContainer: document.getElementById("side-bar-div"),
+input: document.getElementById('switch'),
+button1: document.getElementById("hide-side-bar-btn"),
+button2: document.getElementById("show-side-bar-btn"),
 
+// Header/task section
+headerSectionContainer: document.getElementById("layout"),
+button: document.getElementById("dropdownBtn"),
+addNewTaskButton: document.getElementById("add-new-task-btn"),
+editButton: document.getElementById("edit-btn"),
+deleteTaskButton: document.getElementById("deleteBoardBtn"),
+
+// Modal task section
+form: document.getElementById("new-task-modal-window"),
+input: document.getElementById("title-input"),
+textArea: document.getElementById("desc-input"),
+selectColumn: document.getElementById("select-status"),
+btnContainer: document.getElementById("button-group"),
+createTaskBtn: document.getElementById("create-task-btn"),
+cancelTaskBtn: document.getElementById("cancel-add-task-btn"),
+
+// Editing modal task
+editModalTaskContainer: document.getElementById("edit-task-modal-window"),
+input: document.getElementById("edit-task-title-input"),
+button: document.getElementById("edit-btn"),
+textArea: document.getElementById("edit-task-desc-input"),
+select: document.getElementById("edit-select-status"),
+btnContainer: document.getElementById("edit-task-div button-group"),
+button: document.getElementById("save-task-changes-btn"),
+button: document.getElementById("cancel-edit-btn"),
+button: document.getElementById("delete-task-btn")
 }
 
 let activeBoard = ""
