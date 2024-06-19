@@ -22,6 +22,8 @@ function initializeData() {
   }
 }
 
+initializeData();
+
 // TASK: Get elements from the DOM
 const elements = {
   // Side-bar section
@@ -49,13 +51,13 @@ cancelTaskBtn: document.getElementById("cancel-add-task-btn"),
 // Editing modal task
 editModalTaskContainer: document.getElementById("edit-task-modal-window"),
 input: document.getElementById("edit-task-title-input"),
-button: document.getElementById("edit-btn"),
+editBtn: document.getElementById("edit-btn"),
 textArea: document.getElementById("edit-task-desc-input"),
 select: document.getElementById("edit-select-status"),
 btnContainer: document.getElementById("edit-task-div button-group"),
-button: document.getElementById("save-task-changes-btn"),
-button: document.getElementById("cancel-edit-btn"),
-button: document.getElementById("delete-task-btn")
+saveTaskChangesBtn: document.getElementById("save-task-changes-btn"),
+cancelEditBtn: document.getElementById("cancel-edit-btn"),
+deleteTaskBtn: document.getElementById("delete-task-btn")
 }
 
 let activeBoard = ""
@@ -79,18 +81,18 @@ function fetchAndDisplayBoardsAndTasks() {
 // TASK: Fix Bugs
 function displayBoards(boards) {
   const boardsContainer = document.getElementById("boards-nav-links-div");
-  boardsContainer.innerHTML = ''; // Clears the container
+  boardsContainer.textContent = ''; // Clears the container
   boards.forEach(board => {
     const boardElement = document.createElement("button");
     boardElement.textContent = board;
     boardElement.classList.add("board-btn");
-    boardElement.click()  { 
+    boardElement.addEventListener('click', () => { 
       elements.headerBoardName.textContent = board;
       filterAndDisplayTasksByBoard(board);
       activeBoard = board //assigns active board
       localStorage.setItem("activeBoard", JSON.stringify(activeBoard))
       styleActiveBoard(activeBoard)
-    };
+    });
     boardsContainer.appendChild(boardElement);
   });
 
