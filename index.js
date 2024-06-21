@@ -72,8 +72,6 @@ const elements = {
   filterDiv: document.getElementById("filterDiv"),
 };
 
-console.log(elements);
-
 let activeBoard = "";
 
 // Extracts unique board names from tasks
@@ -150,8 +148,6 @@ function filterAndDisplayTasksByBoard(boardName) {
   });
 }
 
-filterAndDisplayTasksByBoard();
-
 function refreshTasksUI() {
   filterAndDisplayTasksByBoard(activeBoard);
 }
@@ -220,6 +216,7 @@ function setupEventListeners() {
   // Show sidebar event listener
   elements.hideSideBarBtn.addEventListener("click", () => toggleSidebar(false));
   elements.showSideBarBtn.addEventListener("click", () => toggleSidebar(true));
+  elements.showSideBarBtn.style.display = "block";
 
   // Theme switch event listener
   elements.themeSwitch.addEventListener("change", toggleTheme);
@@ -264,9 +261,18 @@ function addTask(event) {
   }
 }
 
-function toggleSidebar(show) {}
+function toggleSidebar(show) {
+  const sidebar = document.querySelector(".side-bar");
+  if (show) {
+    sidebar.classList.add("show");
+  } else {
+    sidebar.classList.remove("show");
+  }
+}
 
-function toggleTheme() {}
+function toggleTheme() {
+  const lightAndDarkMode = elements.themeSwitch
+}
 
 function openEditTaskModal(task) {
   // Set task details in modal inputs
