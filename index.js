@@ -7,7 +7,7 @@ import {
   putTask,
   deleteTask,
 } from "./utils/taskFunctions.js";
-
+import { initialData } from "./initialData.js";
 /*************************************************************************************************************************************************
  * FIX BUGS!!!
  * **********************************************************************************************************************************************/
@@ -66,7 +66,7 @@ const elements = {
   cancelEditBtn: document.getElementById("cancel-edit-btn"),
   deleteTaskBtn: document.getElementById("delete-task-btn"),
   modalWindow: document.getElementById("new-task-modal-window"),
-  modalInput: document.getElementById("title-input"),
+  // modalInput: document.getElementById("title-input"),
   editTaskModal: document.getElementById("new-task-modal-window"),
 
   filterDiv: document.getElementById("filterDiv"),
@@ -170,15 +170,16 @@ function styleActiveBoard(boardName) {
 }
 
 function addTaskToUI(task) {
-  const column = document.querySelector(
+  const column = document.querySelectorAll(
     '.column-div[data-status="${task.status}"]'
   );
+  // console.log(column);
   if (!column) {
     console.error(`Column not found for status: ${task.status}`);
     return;
   }
 
-  let tasksContainer = column.querySelector(".tasks-container");
+  let tasksContainer = document.querySelector(".tasks-container");
   if (!tasksContainer) {
     console.warn(
       `Tasks container not found for status: ${task.status}, creating one.`
@@ -269,6 +270,7 @@ function toggleTheme() {}
 
 function openEditTaskModal(task) {
   // Set task details in modal inputs
+  // task = elements.modalInput.getElementById("title-input")
 
   // Get button elements from the task modal
 
