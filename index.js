@@ -30,9 +30,10 @@ const elements = {
   // Side-bar section
   sideBarContainer: document.getElementById("side-bar-div"),
   input: document.getElementById("switch"),
-  button1: document.getElementById("hide-side-bar-btn"),
-  button2: document.getElementById("show-side-bar-btn"),
+  hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
+  showSideBarBtn: document.getElementById("show-side-bar-btn"),
   // div: document.getElementById("boards-nav-links-div"),
+  themeSwitch: document.getElementById("switch"),
 
   // Header/task section
   headerSectionContainer: document.getElementById("layout"),
@@ -41,6 +42,10 @@ const elements = {
   editButton: document.getElementById("edit-board-btn"),
   headerBoardName: document.getElementById("header-board-name"),
   deleteTaskButton: document.getElementById("deleteBoardBtn"),
+  createNewTaskBtn: document.getElementById("add-new-task-btn"),
+
+  // Columns
+  columnDivs: document.querySelectorAll("column-div"),
 
   // Modal task section
   form: document.getElementById("new-task-modal-window"),
@@ -49,7 +54,7 @@ const elements = {
   selectColumn: document.getElementById("select-status"),
   btnContainer: document.getElementById("button-group"),
   createTaskBtn: document.getElementById("create-task-btn"),
-  cancelTaskBtn: document.getElementById("cancel-add-task-btn"),
+  cancelAddTaskBtn: document.getElementById("cancel-add-task-btn"),
 
   // Editing modal task
   editModalTaskContainer: document.getElementById("edit-task-modal-window"),
@@ -61,6 +66,11 @@ const elements = {
   saveTaskChangesBtn: document.getElementById("save-task-changes-btn"),
   cancelEditBtn: document.getElementById("cancel-edit-btn"),
   deleteTaskBtn: document.getElementById("delete-task-btn"),
+  modalWindow: document.getElementById("modal-window"),
+  modalInput: document.getElementById("title-input"),
+  editTaskModal: document.getElementsByClassName("edit-task-modal-window"),
+
+  filterDiv: document.getElementById("filterDiv"),
 };
 
 console.log(elements);
@@ -91,6 +101,7 @@ function displayBoards(boards) {
   const boardsContainer = document.getElementById("boards-nav-links-div");
   boardsContainer.textContent = ""; // Clears the container
   boards.forEach((board) => {
+    // console.log(elements.boards);
     const boardElement = document.createElement("button");
     boardElement.textContent = board;
     boardElement.classList.add("board-btn");
@@ -122,7 +133,7 @@ function filterAndDisplayTasksByBoard(boardName) {
                           <span class="dot" id="${status}-dot"></span>
                           <h4 class="columnHeader">${status.toUpperCase()}</h4>
                         </div>`;
-    
+    console.log(elements.columnDivs);
     const tasksContainer = document.createElement("div");
     column.appendChild(tasksContainer);
 
@@ -163,7 +174,7 @@ function styleActiveBoard(boardName) {
   });
 }
 
-styleActiveBoard("board");
+styleActiveBoard();
 
 function addTaskToUI(task) {
   const column = document.querySelector(
@@ -192,7 +203,7 @@ function addTaskToUI(task) {
   tasksContainer.appendChild(taskElement);
 }
 
-// addTaskToUI();
+addTaskToUI();
 
 function setupEventListeners() {
   // Cancel editing task event listener
@@ -270,8 +281,8 @@ function openEditTaskModal(task) {
   // Get button elements from the task modal
 
   // Call saveTaskChanges upon click of Save Changes button
-  saveTaskChanges.addEventListener("click", (task) => {
-    deleteTask(task);
+  saveTaskChanges.addEventListener("click", () => {
+    deleteTask();
   });
   // Delete task using a helper function and close the task modal
 
