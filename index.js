@@ -1,12 +1,12 @@
 // TASK: import helper functions from utils
 // TASK: import initialData
-import { getTasks } from "./utils/taskFunctions.js";
-import { createNewTask } from "./utils/taskFunctions.js";
-import { patchTask } from "./utils/taskFunctions.js";
-import { putTask } from "./utils/taskFunctions.js";
-import { deleteTask } from "./utils/taskFunctions.js";
-
-import { initialData } from "./initialData.js";
+import {
+  getTasks,
+  createNewTask,
+  patchTask,
+  putTask,
+  deleteTask,
+} from "./utils/taskFunctions.js";
 
 /*************************************************************************************************************************************************
  * FIX BUGS!!!
@@ -29,11 +29,10 @@ initializeData();
 const elements = {
   // Side-bar section
   sideBarContainer: document.getElementById("side-bar-div"),
-  input: document.getElementById("switch"),
+  themeSwitch: document.getElementById("switch"),
   hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
   showSideBarBtn: document.getElementById("show-side-bar-btn"),
   // div: document.getElementById("boards-nav-links-div"),
-  themeSwitch: document.getElementById("switch"),
 
   // Header/task section
   headerSectionContainer: document.getElementById("layout"),
@@ -66,9 +65,9 @@ const elements = {
   saveTaskChangesBtn: document.getElementById("save-task-changes-btn"),
   cancelEditBtn: document.getElementById("cancel-edit-btn"),
   deleteTaskBtn: document.getElementById("delete-task-btn"),
-  modalWindow: document.getElementById("modal-window"),
+  modalWindow: document.getElementById("new-task-modal-window"),
   modalInput: document.getElementById("title-input"),
-  editTaskModal: document.getElementsByClassName("edit-task-modal-window"),
+  editTaskModal: document.getElementById("new-task-modal-window"),
 
   filterDiv: document.getElementById("filterDiv"),
 };
@@ -93,8 +92,6 @@ function fetchAndDisplayBoardsAndTasks() {
   }
 }
 
-fetchAndDisplayBoardsAndTasks();
-
 // Creates different boards in the DOM
 // TASK: Fix Bugs
 function displayBoards(boards) {
@@ -115,8 +112,6 @@ function displayBoards(boards) {
     boardsContainer.appendChild(boardElement);
   });
 }
-
-displayBoards();
 
 // Filters tasks corresponding to the board name and displays them on the DOM.
 // TASK: Fix Bugs
@@ -174,8 +169,6 @@ function styleActiveBoard(boardName) {
   });
 }
 
-styleActiveBoard();
-
 function addTaskToUI(task) {
   const column = document.querySelector(
     '.column-div[data-status="${task.status}"]'
@@ -202,8 +195,6 @@ function addTaskToUI(task) {
 
   tasksContainer.appendChild(taskElement);
 }
-
-addTaskToUI();
 
 function setupEventListeners() {
   // Cancel editing task event listener
@@ -239,6 +230,7 @@ function setupEventListeners() {
   });
 
   // Add new task form submission event listener
+  console.log(elements.modalWindow);
   elements.modalWindow.addEventListener("submit", (event) => {
     addTask(event);
   });
@@ -281,9 +273,9 @@ function openEditTaskModal(task) {
   // Get button elements from the task modal
 
   // Call saveTaskChanges upon click of Save Changes button
-  saveTaskChanges.addEventListener("click", () => {
-    deleteTask();
-  });
+  // saveTaskChanges.addEventListener("click", () => {
+  //   deleteTask();
+  // });
   // Delete task using a helper function and close the task modal
 
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
