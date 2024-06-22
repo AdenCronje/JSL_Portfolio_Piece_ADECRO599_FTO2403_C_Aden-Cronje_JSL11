@@ -234,8 +234,6 @@ function setupEventListeners() {
   });
 }
 
-// setupEventListeners();
-
 // Toggles tasks modal
 // Task: Fix bugs
 function toggleModal(show, modal = elements.modalWindow) {
@@ -269,22 +267,34 @@ function toggleSidebar(show) {
     sidebar.classList.remove("show");
   }
 }
+// toggleSidebar(true)
 
 function toggleTheme() {
-  const lightAndDarkMode = elements.themeSwitch
+  const toggleLightAndDark = elements.themeSwitch;
+  toggleTheme(true, toggleLightAndDark);
 }
 
 function openEditTaskModal(task) {
   // Set task details in modal inputs
-  // task = elements.modalInput.getElementById("title-input")
+  const taskDetails = elements.modalInput.querySelector(".modal-input");
+  modalInput.value = task.title;
 
   // Get button elements from the task modal
-
   // Call saveTaskChanges upon click of Save Changes button
-  // saveTaskChanges.addEventListener("click", () => {
-  //   deleteTask();
-  // });
-  // Delete task using a helper function and close the task modal
+  const saveChangesBtn = document.getElementById("create-task-btn");
+  saveChangesBtn.addEventListener("click", () => {
+    saveTaskChanges(task.id);
+    toggleModal(false, elements.editTaskModal);
+    refreshTasksUI();
+  });
+
+  const deleteChangesBtn = document.getElementById("cancel-add-task-btn");
+  deleteChangesBtn.addEventListener("click", () => {
+    // Delete task using a helper function and close the task modal
+    deleteTask(task.id);
+    toggleModal(false, elements.editTaskModal);
+    refreshTasksUI();
+  });
 
   toggleModal(true, elements.editTaskModal); // Show the edit task modal
 }
