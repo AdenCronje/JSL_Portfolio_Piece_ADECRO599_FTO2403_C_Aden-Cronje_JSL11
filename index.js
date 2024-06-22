@@ -228,7 +228,7 @@ function setupEventListeners() {
   });
 
   // Add new task form submission event listener
-  console.log(elements.modalWindow);
+  // console.log(elements.modalWindow);
   elements.modalWindow.addEventListener("submit", (event) => {
     addTask(event);
   });
@@ -267,11 +267,10 @@ function toggleSidebar(show) {
     sidebar.classList.remove("show");
   }
 }
-// toggleSidebar(true)
 
 function toggleTheme() {
   const toggleLightAndDark = elements.themeSwitch;
-  toggleTheme(true, toggleLightAndDark);
+  toggleTheme(false, toggleLightAndDark);
 }
 
 function openEditTaskModal(task) {
