@@ -277,7 +277,7 @@ function toggleTheme() {
 function openEditTaskModal(task) {
   // Set task details in modal inputs
   const taskDetails = elements.modalInput.querySelector(".modal-input");
-  modalInput.value = task.title;
+  taskDetails.value = task.title;
 
   // Get button elements from the task modal
   // Call saveTaskChanges upon click of Save Changes button
@@ -301,13 +301,16 @@ function openEditTaskModal(task) {
 
 function saveTaskChanges(taskId) {
   // Get new user inputs
-
+  const newUserInput = document.getElementById("edit-task-title-input");
   // Create an object with the updated task details
-
+  const updatedTask = {
+    id: taskId,
+    title: newUserInput,
+  };
   // Update task using a helper function
-
+  putTask(updatedTask);
   // Close the modal and refresh the UI to reflect the changes
-
+  toggleModal(false);
   refreshTasksUI();
 }
 
